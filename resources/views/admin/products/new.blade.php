@@ -34,20 +34,22 @@
             <form role="form" method="POST" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="box-body">
-
-                <div class="form-group">
+                @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+                <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label for="">Nombre</label>
-                  <input type="text" name="name" class="form-control" id="" placeholder="Nombre">
+                  <input type="text" name="name" class="form-control" id="" placeholder="Nombre" value="{{ old('name') }}">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('sku') ? ' has-error' : '' }}">
                   <label for="">Sku</label>
-                  <input type="text" name="sku" class="form-control" id="" placeholder="Sku">
+                  <input type="text" name="sku" class="form-control" id="" placeholder="Sku" value="{{ old('sku') }}">
                 </div>
 
-                <div class="input-group">
+                <div class="input-group {{ $errors->has('price') ? ' has-error' : '' }}">
                   <span class="input-group-addon">$</span>
-                  <input type="text" name="price" class="form-control">
+                  <input type="text" name="price" class="form-control" value="{{ old('price') }}">
                 </div>
 
                 <div class="form-group">
@@ -58,10 +60,10 @@
 
                 <div class="form-group">
                   <label for="">Descripción</label>
-                  <input type="text" name="description" class="form-control" id="" placeholder="Descripción">
+                  <input type="text" name="description" class="form-control" id="" placeholder="Descripción" value="{{ old('description') }}">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
                   <label for="">Categoria</label>
                   <?php 
                     $categories = App\Models\Category::get();
@@ -73,7 +75,7 @@
                   </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('brand') ? ' has-error' : '' }}">
                   <label for="">Marca</label>
                   <?php 
                     $brands = App\Models\Brand::get();

@@ -27,7 +27,7 @@
             @foreach($products as $product)
               <div class="col-md-4 col-xs-12 col-sm-4 product">
                 <article>
-                  <a href="">
+                  <a href="producto/{{ $product->id }}">
                     @foreach($product->images as $image)
                       <img src="{{ url('storage/app/system/products/' . $product->id . '/'. $image->url) }}" alt="">
                       @break

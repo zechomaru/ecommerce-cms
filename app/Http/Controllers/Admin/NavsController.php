@@ -25,6 +25,7 @@ class NavsController extends Controller
     {
       $this->validate($request, [
           'name' => 'required',
+          'category' => 'required',
       ]);
       $test = $request->category;
       $ids = '';
@@ -67,6 +68,10 @@ class NavsController extends Controller
 
     public function update(Request $request, $id)
     {
+      $this->validate($request, [
+          'name' => 'required',
+          'category' => 'required',
+      ]);
       $nav = Nav::find($id);
       $status = $request->status;
       if (!$status == 1) {

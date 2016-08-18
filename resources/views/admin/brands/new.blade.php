@@ -34,18 +34,23 @@
             <form role="form" method="POST" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="box-body">
-                <div class="form-group">
+                @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+                <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label for="">Nombre de la Marca</label>
-                  <input type="text" name="name" class="form-control" id="" placeholder="Nombre">
+                  <input type="text" name="name" class="form-control" id="" placeholder="Nombre" value="{{ old('name') }}">
                 </div>
 
                 <div class="form-group">
                   <label for="">Descripción</label>
-                  <input type="text" name="description" class="form-control" id="" placeholder="Nombre">
+                  <input type="text" name="description" class="form-control" id="" placeholder="Nombre" value="{{ old('description') }}">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">
                   <label for="">Imagen</label>
+                  </br>
+                  <span>Selecione una imagen de la marca. formato de imagen (JPG, PNG)</span>
                   <input type="file" name="image" class="form-control">
                 </div>
 

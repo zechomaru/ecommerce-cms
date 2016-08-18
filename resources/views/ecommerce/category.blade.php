@@ -7,25 +7,25 @@
   <section>
     <div class="container">
       <div class="row">
-      <!-- sucursales -->
-        <div class="col-md-4 hidden-xs hidden-sm">
+      <!-- categorias -->
+        <div class="col-md-3 hidden-xs hidden-sm">
           <div class="row">
             <div class="col-md-12">
-              <h3>SUCURSALES</h3>
+              <h3>CATEGORIAS</h3>
             </div>
           </div>
         </div>
 
         <!-- end sucursales -->
         <!-- producto destacado -->
-        <div class="col-md-8 productos_destacados">
+        <div class="col-md-9 productos_destacados">
           <div class="row">
             <div class="col-md-12">
-              <h3></h3>
+              <h2>{{ $category->name }}</h2>
             </div>
 
             @foreach($products as $product)
-              <div class="col-md-4 col-xs-12 col-sm-4 product">
+              <div class="col-md-3 col-xs-12 col-sm-4 product">
                 <article>
                   <a href="">
                     @foreach($product->images as $image)

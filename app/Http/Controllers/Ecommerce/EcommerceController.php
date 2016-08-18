@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Ecommerce;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Setting;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -29,7 +30,8 @@ class EcommerceController extends Controller
     public function category($category)
     {
       $products = Product::where('category_id', $category)->get();
-      return view('ecommerce.category', ['products' => $products]);
+      $category = Category::find($category);
+      return view('ecommerce.category', ['products' => $products, 'category' => $category]);
     }
 
 }

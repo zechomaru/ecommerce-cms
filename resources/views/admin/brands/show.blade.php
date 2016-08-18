@@ -30,7 +30,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                      <img src="{{ url('storage/app/system/brands/' . $brand->image) }}" alt="" style="width: 400px;">
+                      <img src="{{ url('images/brands/' . $brand->image) }}" alt="" style="width: 400px;">
                       <h3>Descripción</h3>
                       <p>{{ $brand->description }}</p>
                     </div>

@@ -27,6 +27,7 @@ public function store(Request $request)
 {
   $this->validate($request, [
           'name' => 'required|max:255',
+          'image' => 'mimes:jpeg,jpg,png|required',
       ]);
 
     $image = $request->file('image');
@@ -76,6 +77,10 @@ public function edit($id)
 
 public function update(Request $request, $id)
 {
+  $this->validate($request, [
+          'name' => 'required|max:255',
+          // 'image' => 'mimes:jpeg,jpg,png|required',
+      ]);
   $brand = Brand::find($id);
 
   $image = $request->image;

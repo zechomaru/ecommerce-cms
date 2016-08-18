@@ -97,6 +97,13 @@ return [
         'validate' => [
             'required' => 'Tiene que aceptar las politicas.',
         ],
+        'category' => [
+            'required' => 'Tiene que selecionar una categoria.',
+        ],
+        'image' => [
+            'required' => 'Tiene que selecionar una imagen.',
+            'mimes' => 'La imagen debe ser un archivo con formato: jpeg, jpg, png',
+        ],
     ],
 
     /*

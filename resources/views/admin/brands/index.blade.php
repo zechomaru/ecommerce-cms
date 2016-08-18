@@ -43,7 +43,7 @@
                               <td>{{ $brand->name }}</td>
                               <td>{{ $brand->description }}</td>
                               @if($brand->image)
-                                <td><img src="{{ url('storage/app/system/brands/' . $brand->image) }}" alt="" style="width: 60px;"></td>
+                                <td><img src="{{ url('images/brands/' . $brand->image) }}" alt="" style="width: 60px;"></td>
                               @else
                                 <td></td>
                               @endif

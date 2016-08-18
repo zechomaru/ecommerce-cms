@@ -32,21 +32,27 @@
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form" method="POST" >
-              {{ csrf_field() }}
               <div class="box-body">
-                <div class="form-group">
+                {{ csrf_field() }}
+                @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+                <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label for="">Nombre del menu</label>
-                  <input type="text" name="name" class="form-control" id="" placeholder="Nombre">
+                  <input type="text" name="name" class="form-control" id="" placeholder="Nombre" value="{{ old('name') }}">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
                   <label for="">Categoria</label>
                   <div>
-
-                  @foreach(App\Models\Category::all() as $category)
-                    <label for="">{{ $category->name }}</label>
-                    <input type="checkbox" value="{{ $category->id }}"  name="category[]" class="input">
-                  @endforeach
+                  @if( count(App\Models\Category::all()) != 0)
+                    @foreach(App\Models\Category::all() as $category)
+                      <label for="">{{ $category->name }}</label>
+                      <input type="checkbox" value="{{ $category->id }}"  name="category[]" class="input">
+                    @endforeach
+                    @else
+                      No hay categorias cree una categoria <a href="/admin/dashboard/categoria/new">aqui</a>
+                  @endif
                   </div>
                 </div>
 

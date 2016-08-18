@@ -34,12 +34,18 @@
             <form role="form" action="{{ url('admin/dashboard/categoria/update/' . $category->id) }}" method="POST" >
               {{ csrf_field() }}
               <div class="box-body">
-
-                <div class="form-group">
-                  <label for="">Nombre</label>
+                @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+                <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+                  <label for="">Nombre de la categoria</label>
                   <input type="text" name="name" class="form-control" id="" placeholder="Nombre" value="{{ $category->name }}">
                 </div>
 
+                <div class="form-group">
+                  <label for="">Descripción</label>
+                  <input type="text" name="description" class="form-control" id="" placeholder="Nombre" value="{{ $category->description }}">
+                </div>
 
 
               </div>

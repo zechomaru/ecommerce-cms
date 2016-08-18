@@ -59,6 +59,9 @@ public function edit($id)
 
 public function update(Request $request, $id)
 {
+  $this->validate($request, [
+          'name' => 'required|max:255',
+      ]);
   $category = Category::find($id);
   $update = $category->update($request->all());
   if ($update) {

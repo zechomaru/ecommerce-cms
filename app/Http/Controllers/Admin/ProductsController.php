@@ -26,6 +26,10 @@ class ProductsController extends Controller
     {
       $this->validate($request, [
           'name' => 'required',
+          'price' => 'required|between:0,99.99|regex:/^\d*(\.\d{2})?$/',
+          'sku' => 'required|regex:/^\d*(\.\d{2})?$/',
+          'category_id' => 'required',
+          'brand_id' => 'required',
       ]);
 
       $images = $request->file('images');
@@ -35,7 +39,7 @@ class ProductsController extends Controller
           $i = 0;
           foreach ($images as $key) {
             $newNombre = date("d-m-y-h-i-s");
-            $extension= $key->getClientOriginalExtension();
+            $extension = $key->getClientOriginalExtension();
             $image = Image::create(['url' => $newNombre . $i . '.'. $extension]);
             if ($image) {
               Storage::put( 'system/products/'. $product->id . '/' . $newNombre .$i. '.'. $extension, file_get_contents($key->getRealPath()));
@@ -76,17 +80,45 @@ class ProductsController extends Controller
 
     public function update(Request $request, $id)
     {
-      $nav = Nav::find($id);
-      $status = $request->status;
-      if (!$status == 1) {
-        $nav->status = 0;
-      }
-      $update = $nav->update($request->all());
-      if ($update) {
-        return back()->with('status', 1)->with("message", "Se guardo exitosamente");
+      $this->validate($request, [
+          'name' => 'required',
+          'price' => 'required|between:0,99.99|regex:/^\d*(\.\d{2})?$/',
+          'sku' => 'required|regex:/^\d*(\.\d{2})?$/',
+          'category_id' => 'required',
+          'brand_id' => 'required',
+      ]);
+
+      $images = $request->file('images');
+      $product = Product::find($id);
+      if ($product) {
+        if ($images != [null]) {
+          Storage::deleteDirectory('system/products/' . $product->id);
+          $product->images()->detach();
+          $i = 0;
+          foreach ($images as $key) {
+            $newNombre = date("d-m-y-h-i-s");
+            $extension = $key->getClientOriginalExtension();
+            $image = Image::create(['url' => $newNombre . $i . '.'. $extension]);
+            if ($image) {
+              Storage::put( 'system/products/'. $product->id . '/' . $newNombre .$i. '.'. $extension, file_get_contents($key->getRealPath()));
+              $product->images()->save($image);
+              $i++;
+            }
+          }
+          $product->update($request->all());
+          return redirect('/admin/dashboard/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
+        }else{
+          $product->update($request->all());
+          return redirect('/admin/dashboard/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
+        }
       }else{
         return back()->with('status', 0)->with("message", "Ha ocurrido un error al guardar");
       }
     }
+
+
+
+
+
 
 }

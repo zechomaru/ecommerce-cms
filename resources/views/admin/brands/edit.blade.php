@@ -34,9 +34,11 @@
             <form role="form" action="{{ url('admin/dashboard/marca/update/' . $brand->id) }}" method="POST" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="box-body">
-
-                <div class="form-group">
-                  <label for="">Nombre</label>
+                @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+                <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+                  <label for="">Nombre de la Marca</label>
                   <input type="text" name="name" class="form-control" id="" placeholder="Nombre" value="{{ $brand->name }}">
                 </div>
 
@@ -45,8 +47,10 @@
                   <input type="text" name="description" class="form-control" id="" placeholder="Nombre" value="{{ $brand->description }}">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">
                   <label for="">Imagen</label>
+                  </br>
+                  <span>Selecione una imagen de la marca. formato de imagen (JPG, PNG)</span>
                   <input type="file" name="image" class="form-control">
                 </div>
 

@@ -35,7 +35,7 @@
         </ul>
       </li>
 
-      <li class="treeview {{ setActiveAdmin('menus') }}">
+      <li class="treeview {{ setActiveAdmin('paginas') }}">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Paginas</span>
           <span class="pull-right-container">
