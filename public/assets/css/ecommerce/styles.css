@@ -485,6 +485,11 @@ html {
         color: #A3A3A3;
       }
 /*producto show*/
+  .content h1{
+        font-size: 35px;
+        margin-bottom: 10px;
+        font-family: 'BenchNine', sans-serif;
+  }
       .content .product-info{
         overflow: auto;
         margin-bottom: 20px;
@@ -502,9 +507,11 @@ html {
           text-align: center;
           width: 260px;
       }
-
+.product-info > .right{
+  float: left;
+}
       .product-info > .left + .right {
-          margin-left: 265px;
+          margin-left: 0px;
       }
       .product-info .description {
     border-top: 1px solid #E7E7E7;

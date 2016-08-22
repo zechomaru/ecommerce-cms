@@ -55,7 +55,7 @@
                    » <a href="http://www.gobantes.cl/iluminacion/lamparas">Ampolletas</a>
                    » <a href="http://www.gobantes.cl/iluminacion/lamparas/lamparas-led">LED</a>
                 </div> -->
-            <h1>{{ $product->name }}</h1>
+            <h1 class="product_name">{{ $product->name }}</h1>
             <div class="product-info">
                   <div class="left">
                     <div class="image">

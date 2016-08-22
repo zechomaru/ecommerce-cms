@@ -49,7 +49,7 @@
         <div class="col-md-9 productos_destacados">
           <div class="row">
             <div class="col-md-12">
-              <h2>{{ $categories->name }}</h2>
+              <h1>{{ $categories->name }}</h1>
             </div>
 
             @foreach($products as $product)
