@@ -1,6 +1,7 @@
-@extends('layouts.ecommerce')
+@extends('layouts.ecommerce_products')
 @section('title')
     <title></title>
+    <style>.contet{background-image: none;}</style>
 @endsection
 
 @section('content')
@@ -28,10 +29,14 @@
               <div class="col-md-3 col-xs-12 col-sm-4 product">
                 <article>
                   <a href="">
-                    @foreach($product->images as $image)
-                      <img src="{{ url('storage/app/system/products/' . $product->id . '/'. $image->url) }}" alt="">
-                      @break
-                    @endforeach
+                    @if(!$product->images->isEmpty())
+                      @foreach($product->images as $image)
+                        <img src="{{ url('storage/app/system/products/' . $product->id . '/'. $image->url) }}" alt="">
+                        @break
+                      @endforeach
+                    @else
+                        <img src="{{ url('storage/app/system/products/default/test.png') }}" alt="">
+                    @endif
                   </a>
                   <a class="title">{{ $product->name }}
                     <span class="sku">SKU: {{ $product->sku }}</span>
@@ -41,6 +46,11 @@
                 </article>
               </div>
             @endforeach
+            <div class="paginator">
+              
+              {{ $products->links() }}
+              <div class="results">Mostrando de {{$products->firstItem()}} a {{$products->lastItem()}} de {{$products->total()}} ({{$products->lastPage()}} Páginas)</div>
+            </div>
 
           </div>
         </div>

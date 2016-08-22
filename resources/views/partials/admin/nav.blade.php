@@ -30,8 +30,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{ url('admin/dashboard/menus/new') }}">Nuevo</a></li>
-          <li class=""><a href="{{ url('admin/dashboard/menus') }}">Todos</a></li>
+          <li class=""><a href="{{ url('admin/menus/new') }}">Nuevo</a></li>
+          <li class=""><a href="{{ url('admin/menus') }}">Todos</a></li>
         </ul>
       </li>
 
@@ -43,12 +43,12 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{ url('admin/dashboard/menus/new') }}">Nuevo</a></li>
-          <li class=""><a href="{{ url('admin/dashboard/menus') }}">Todos</a></li>
+          <li class=""><a href="{{ url('admin/menus/new') }}">Nuevo</a></li>
+          <li class=""><a href="{{ url('admin/menus') }}">Todos</a></li>
         </ul>
       </li>
 
-      <li class="treeview {{ setActiveAdmin('productos') }} {{ setActiveAdmin('categorias') }} {{ setActiveAdmin('marcas') }}">
+      <li class="treeview {{ setActiveAdmin('productos') }} {{ setActiveAdmin('categorias') }} {{ setActiveAdmin('marcas') }} {{ setActiveAdmin('categoria/new') }}">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Productos</span>
           <span class="pull-right-container">
@@ -56,19 +56,45 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{ url('admin/dashboard/producto/new') }}">Nuevo</a></li>
-          <li class=""><a href="{{ url('admin/dashboard/productos') }}">Todos</a></li>
+          <li class=""><a href="{{action('Admin\ProductsController@create')}}">Nuevo</a></li>
+          <li class=""><a href="{{action('Admin\ProductsController@index')}}">Todos</a></li>
 
-          <li class="treeview {{ setActiveAdmin('categorias') }}">
+          <li class="treeview {{ setActiveAdmin('categorias') }} {{ setActiveAdmin('categoria/new') }}">
             <a href="#">
-              <i class="fa fa-dashboard"></i> <span>categorias</span>
+              <i class="fa fa-dashboard"></i> <span>Categorias</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li class=""><a href="{{ url('admin/dashboard/categoria/new') }}">Nuevo</a></li>
-              <li class=""><a href="{{ url('admin/dashboard/categorias') }}">Todos</a></li>
+              <li class="{{ setActiveAdmin('categoria/new') }}"><a href="{{action('Admin\CategoriesController@create')}}">Nuevo</a></li>
+              <li class=""><a href="{{action('Admin\CategoriesController@index')}}">Todos</a></li>
+            </ul>
+          </li>
+
+          <li class="treeview {{ setActiveAdmin('grupos') }} {{ setActiveAdmin('grupo/new') }}">
+            <a href="#">
+              <i class="fa fa-dashboard"></i> <span>Grupos</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="{{ setActiveAdmin('grupo/new') }}"><a href="{{action('Admin\GroupsController@create')}}">Nuevo</a></li>
+              <li class="{{ setActiveAdmin('grupos') }}"><a href="{{action('Admin\GroupsController@index')}}">Todos</a></li>
+            </ul>
+          </li>
+
+          <li class="treeview {{ setActiveAdmin('sub-grupos') }} {{ setActiveAdmin('sub-grupo/new') }}">
+            <a href="#">
+              <i class="fa fa-dashboard"></i> <span>Sub-Grupos</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="{{ setActiveAdmin('sub-grupo/new') }}"><a href="{{action('Admin\SubGroupsController@create')}}">Nuevo</a></li>
+              <li class="{{ setActiveAdmin('sub-grupos') }}"><a href="{{action('Admin\SubGroupsController@index')}}">Todos</a></li>
             </ul>
           </li>
 
@@ -80,8 +106,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li class=""><a href="{{ url('admin/dashboard/marca/new') }}">Nuevo</a></li>
-              <li class=""><a href="{{ url('admin/dashboard/marcas') }}">Todos</a></li>
+              <li class="{{ setActiveAdmin('marca/new') }}"><a href="{{action('Admin\BrandsController@create')}}">Nuevo</a></li>
+              <li class="{{ setActiveAdmin('marcas') }}"><a href="{{action('Admin\BrandsController@index')}}">Todos</a></li>
             </ul>
           </li>
 
@@ -97,8 +123,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{ url('admin/dashboard/admin/new') }}">Nuevo</a></li>
-          <li class=""><a href="{{ url('admin/dashboard/admins') }}">Todos</a></li>
+          <li class=""><a href="{{action('Admin\AdminsController@create')}}">Nuevo</a></li>
+          <li class=""><a href="{{action('Admin\AdminsController@index')}}">Todos</a></li>
         </ul>
       </li>
 
@@ -110,7 +136,7 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{ url('admin/dashboard/newsletters') }}">Todos</a></li>
+          <li class=""><a href="{{ url('admin/newsletters') }}">Todos</a></li>
         </ul>
       </li>
 
@@ -122,8 +148,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{ url('admin/dashboard/menus/new') }}">Nuevo</a></li>
-          <li class=""><a href="{{ url('admin/dashboard/menus') }}">Todos</a></li>
+          <li class=""><a href="{{ url('admin/menus/new') }}">Nuevo</a></li>
+          <li class=""><a href="{{ url('admin/menus') }}">Todos</a></li>
         </ul>
       </li>
 
@@ -135,8 +161,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{ url('admin/dashboard/menus/new') }}">Nuevo</a></li>
-          <li class=""><a href="{{ url('admin/dashboard/menus') }}">Todos</a></li>
+          <li class=""><a href="{{ url('admin/menus/new') }}">Nuevo</a></li>
+          <li class=""><a href="{{ url('admin/menus') }}">Todos</a></li>
         </ul>
       </li>
 
@@ -148,7 +174,7 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{ url('admin/dashboard/configuracion') }}">Pagina</a></li>
+          <li class=""><a href="{{ url('admin/configuracion') }}">Pagina</a></li>
           <!-- <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
         </ul>
       </li>
@@ -161,7 +187,7 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{ url('admin/dashboard/google') }}">Analitycs</a></li>
+          <li class=""><a href="{{ url('admin/google') }}">Analitycs</a></li>
           <!-- <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li> -->
         </ul>
       </li>

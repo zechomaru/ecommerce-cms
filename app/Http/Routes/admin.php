@@ -1,37 +1,40 @@
 <?php
-Route::get('/', "InstallController@installLogin");
-
-//vista de mensaje de bienvenida
-Route::get('/install', "InstallController@index");
-//vista del primero formulario
-Route::get('/install/first', "InstallController@viewFirst");
-// post del primer formulario
-Route::post('/install/first', "InstallController@createFirst");
-
-Route::get('/install/second', "InstallController@viewSecond");
-
-Route::post('/install/second', "InstallController@createSecond");
-
-
-
+/*************************----Dashboard---************************************/
 Route::group(['middleware' => ['auth:admin']], function ($router) {
-    Route::group(['prefix' => 'dashboard'], function () {
-        Route::get('/', [
-            'uses' => 'DashboardController@index',
-            'as' => 'admin.index',
-        ]);
+    // ruta/admin/dashboard
+    Route::get('/', function ()
+    {
+        return redirect('/admin/dashboard');
+    });
+    Route::get('/dashboard', [
+        'uses' => 'DashboardController@index',
+        'as' => 'admin.index',
+    ]);
 
-        Route::get('/configuracion', [
-            'uses' => 'SettingController@edit',
-            'as' => 'admin.settings',
-        ]);
-        Route::put('/configuracion/update', 'SettingController@update');
+    Route::get('/configuracion', [
+        'uses' => 'SettingController@edit',
+        'as' => 'admin.settings',
+    ]);
+
+
+
+    Route::put('/configuracion/update', 'SettingController@update');
 
         Route::get('/google', [
             'uses' => 'GoogleController@edit',
             'as' => 'admin.google',
         ]);
         Route::put('/google/update', 'GoogleController@update');
+
+        // crud categorias
+
+        Route::get('/categorias', 'CategoriesController@index');
+        Route::get('/categoria/new', 'CategoriesController@create');
+        Route::post('/categoria/new', 'CategoriesController@store');
+        Route::get('/categoria/{id}', 'CategoriesController@show');
+        Route::get('/categoria/edit/{id}', 'CategoriesController@edit');
+        Route::put('/categoria/update/{id}', 'CategoriesController@update');
+
 
         Route::get('/menus', 'NavsController@index');
         Route::get('/menus/new', 'NavsController@create');
@@ -50,14 +53,25 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
         Route::get('/admin/edit/{id}', 'AdminsController@edit');
         Route::put('/admin/update/{id}', 'AdminsController@update');
 
-        // crud categorias
 
-        Route::get('/categorias', 'CategoriesController@index');
-        Route::get('/categoria/new', 'CategoriesController@create');
-        Route::post('/categoria/new', 'CategoriesController@store');
-        Route::get('/categoria/{id}', 'CategoriesController@show');
-        Route::get('/categoria/edit/{id}', 'CategoriesController@edit');
-        Route::put('/categoria/update/{id}', 'CategoriesController@update');
+
+        // crud grupos
+
+        Route::get('/grupos', 'GroupsController@index');
+        Route::get('/grupo/new', 'GroupsController@create');
+        Route::post('/grupo/new', 'GroupsController@store');
+        Route::get('/grupo/{id}', 'GroupsController@show');
+        Route::get('/grupo/edit/{id}', 'GroupsController@edit');
+        Route::put('/grupo/update/{id}', 'GroupsController@update');
+
+        // crud sub-grupos
+
+        Route::get('/sub-grupos', 'SubGroupsController@index');
+        Route::get('/sub-grupo/new', 'SubGroupsController@create');
+        Route::post('/sub-grupo/new', 'SubGroupsController@store');
+        Route::get('/sub-grupo/{id}', 'SubGroupsController@show');
+        Route::get('/sub-grupo/edit/{id}', 'SubGroupsController@edit');
+        Route::put('/sub-grupo/update/{id}', 'SubGroupsController@update');
 
         // crud marcas
 
@@ -80,9 +94,6 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
 
         //newsletter
         Route::get('/newsletters', 'NewsletterController@index');
-
-
-    });
 
 
 

@@ -50,7 +50,7 @@ public function store(Request $request)
       if (isset($image)) {
         Storage::put( 'system/brands/' . $newNombre . '.'. $extension, file_get_contents($image->getRealPath()));
       }
-        return redirect('admin/dashboard/marcas')->with('status', 1)->with("message", "Se ha guardar con exito");
+        return redirect('admin/marcas')->with('status', 1)->with("message", "Se ha guardar con exito");
     }
 }
 
@@ -60,7 +60,7 @@ public function show($id)
   if ($brand) {
     return view('admin.brands.show', ['brand' => $brand]);
   }else{
-    return redirect('/admin/dashboard/marcas');
+    return redirect('/admin/marcas');
   }
 
 }
@@ -71,7 +71,7 @@ public function edit($id)
   if ($brand) {
     return view('admin.brands.edit', ['brand' => $brand]);
   }else{
-    return redirect('/admin/dashboard/marcas');
+    return redirect('/admin/marcas');
   }
 }
 
@@ -108,7 +108,7 @@ public function update(Request $request, $id)
       $update = $brand->update($request->all());
     }
   if ($update) {
-    return redirect('/admin/dashboard/marcas')->with('status', 1)->with("message", "Se guardo exitosamente");
+    return redirect('/admin/marcas')->with('status', 1)->with("message", "Se guardo exitosamente");
   }else{
     return back()->with('status', 0)->with("message", "Ha ocurrido un error al guardar");
   }

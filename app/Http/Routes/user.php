@@ -1,5 +1,5 @@
 <?php
-
+Route::auth();
 // Route::get('login', [
 //     'uses' => 'Auth\AuthController@index',
 //     'as' => 'user.auth.login',

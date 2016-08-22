@@ -32,7 +32,7 @@ public function store(Request $request)
                 'description' => $request['description'],
             ]);
       if ($save) {
-        return redirect('admin/dashboard/categorias')->with('status', 1)->with("message", "Se ha guardar con exito");
+        return redirect('admin/categorias')->with('status', 1)->with("message", "Se ha guardar con exito");
       }
 }
 
@@ -42,7 +42,7 @@ public function show($id)
   if ($category) {
     return view('admin.categories.show', ['category' => $category]);
   }else{
-    return redirect('/admin/dashboard/categorias');
+    return redirect('/admin/categorias');
   }
 
 }
@@ -53,7 +53,7 @@ public function edit($id)
   if ($category) {
     return view('admin.categories.edit', ['category' => $category]);
   }else{
-    return redirect('/admin/dashboard/categorias');
+    return redirect('/admin/categorias');
   }
 }
 
@@ -65,7 +65,7 @@ public function update(Request $request, $id)
   $category = Category::find($id);
   $update = $category->update($request->all());
   if ($update) {
-    return redirect('/admin/dashboard/categorias')->with('status', 1)->with("message", "Se guardo exitosamente");
+    return redirect('/admin/categorias')->with('status', 1)->with("message", "Se guardo exitosamente");
   }else{
     return back()->with('status', 0)->with("message", "Ha ocurrido un error al guardar");
   }

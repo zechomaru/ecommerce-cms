@@ -4,17 +4,17 @@
     <div class="row">
       <div class="col-md-12">
         <ul>
-          @foreach( App\Models\Nav::where('status', 1)->get() as $nav )
+          @foreach( App\Models\Category::take(6)->get() as $category )
           <li>
-            <a href="#">{{$nav->name}}</a>
+            <a href="/{{$category->name}}">{{$category->name}}</a>
             <ul class="subs">
 
-              @foreach( $nav->categories as $category )
+              @foreach( App\Models\Group::where('category_id', $category->id)->get() as $group )
               <li>
-                <a href="/categoria/{{ $category->id }}">{{ $category->name }}</a>
+                <a href="/{{$category->name}}/{{ $group->name }}">{{ $group->name }}</a>
                 <ul style="">
-                  @foreach(App\Models\Product::where('category_id', $category->id)->get() as $product )
-                    <li><a href="/producto/{{ $product->id }}">{{ $product->name }}</a></li>
+                  @foreach(App\Models\SubGroup::where('category_id', $category->id)->where('group_id', $group->id)->take(4)->get() as $subgroups )
+                    <li><a href="/{{$category->name}}/{{ $group->name }}/{{ $subgroups->name }}">{{ $subgroups->name }}</a></li>
                   @endforeach
                     <li><a href="/categoria/{{ $category->id }}">Ver Mas...</a></li>
                 </ul>       

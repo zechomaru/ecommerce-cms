@@ -30,6 +30,8 @@ class ProductsController extends Controller
           'sku' => 'required|regex:/^\d*(\.\d{2})?$/',
           'category_id' => 'required',
           'brand_id' => 'required',
+          'group_id' => 'required',
+          'sub_group_id' => 'required',
       ]);
 
       $images = $request->file('images');
@@ -47,9 +49,9 @@ class ProductsController extends Controller
               $i++;
             }
           }
-          return redirect('/admin/dashboard/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
+          return redirect('/admin/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
         }else{
-          return redirect('/admin/dashboard/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
+          return redirect('/admin/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
         }
       }else{
         return back()->with('status', 0)->with("message", "Ha ocurrido un error al guardar");
@@ -63,7 +65,7 @@ class ProductsController extends Controller
       if ($product) {
         return view('admin.products.show', ['product' => $product]);
       }else{
-        return redirect('/admin/dashboard/productos');
+        return redirect('/admin/productos');
 
       }
     }
@@ -74,7 +76,7 @@ class ProductsController extends Controller
       if ($product) {
         return view('admin.products.edit', ['product' => $product]);
       }else{
-        return redirect('/admin/dashboard/productos');
+        return redirect('/admin/productos');
       }
     }
 
@@ -86,6 +88,8 @@ class ProductsController extends Controller
           'sku' => 'required|regex:/^\d*(\.\d{2})?$/',
           'category_id' => 'required',
           'brand_id' => 'required',
+           'group_id' => 'required',
+          'sub_group_id' => 'required',
       ]);
 
       $images = $request->file('images');
@@ -106,10 +110,10 @@ class ProductsController extends Controller
             }
           }
           $product->update($request->all());
-          return redirect('/admin/dashboard/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
+          return redirect('/admin/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
         }else{
           $product->update($request->all());
-          return redirect('/admin/dashboard/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
+          return redirect('/admin/productos')->with('status', 1)->with("message", "Se guardo exitosamente");
         }
       }else{
         return back()->with('status', 0)->with("message", "Ha ocurrido un error al guardar");

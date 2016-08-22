@@ -13,13 +13,13 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
         <div class="item active">
-          <img src="img/carousel1.jpg" alt="...">
+          <img src="/assets/img/118x350.jpg" alt="...">
         </div>
         <div class="item">
-          <img src="img/carousel1.jpg" alt="...">
+          <img src="/assets/img/118x350.jpg" alt="...">
         </div>
         <div class="item">
-          <img src="img/carousel1.jpg" alt="...">
+          <img src="/assets/img/118x350.jpg" alt="...">
         </div>
       </div>
 

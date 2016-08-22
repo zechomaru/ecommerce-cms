@@ -1,34 +1,34 @@
-@extends('layouts.ecommerce')
+@extends('layouts.ecommerce_products')
 @section('title')
-    <title>ddd</title>
+    <title></title>
+    <style>.contet{background-image: none;}</style>
 @endsection
-
 
 @section('content')
   <section>
     <div class="container">
       <div class="row">
-      <!-- sucursales -->
-        <div class="col-md-4 hidden-xs hidden-sm">
+      <!-- categorias -->
+        <div class="col-md-3 hidden-xs hidden-sm">
           <div class="row">
             <div class="col-md-12">
-              <h3>SUCURSALES</h3>
+              <h3>{{ $group->name }}</h3>
             </div>
           </div>
         </div>
 
         <!-- end sucursales -->
         <!-- producto destacado -->
-        <div class="col-md-8 productos_destacados">
+        <div class="col-md-9 productos_destacados">
           <div class="row">
             <div class="col-md-12">
-              <h3>DESTACADOS</h3>
+              <h2>{{ $group->name }}</h2>
             </div>
 
             @foreach($products as $product)
-              <div class="col-md-4 col-xs-12 col-sm-4 product">
+              <div class="col-md-3 col-xs-12 col-sm-4 product">
                 <article>
-                  <a href="/show/producto/{{$product->category->name}}/{{ $product->id }}">
+                  <a href="">
                     @if(!$product->images->isEmpty())
                       @foreach($product->images as $image)
                         <img src="{{ url('storage/app/system/products/' . $product->id . '/'. $image->url) }}" alt="">
@@ -46,6 +46,11 @@
                 </article>
               </div>
             @endforeach
+            <div class="paginator">
+              
+              {{ $products->links() }}
+              <div class="results">Mostrando de {{$products->firstItem()}} a {{$products->lastItem()}} de {{$products->total()}} ({{$products->lastPage()}} Páginas)</div>
+            </div>
 
           </div>
         </div>

@@ -29,7 +29,7 @@
     <div class="box_flex">
       <div class="box_center">
         <h1>BIENVENIDO A LA INSTALACION</h1>
-          <form action="{{action('Admin\InstallController@viewFirst')}}" method="GET">
+          <form action="{{action('Install\InstallController@viewFirst')}}" method="GET">
             <input type="submit" class="btn btn-success" value="EMPEZAR">
           </form>
       </div>

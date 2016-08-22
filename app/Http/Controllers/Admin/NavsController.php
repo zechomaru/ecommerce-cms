@@ -39,7 +39,7 @@ class NavsController extends Controller
       $create = Nav::create($request->all());
       if ($create) {
         $create->categories()->sync([$ids]);
-        return redirect('/admin/dashboard/menus')->with('status', 1)->with("message", "Se guardo exitosamente");
+        return redirect('/admin/menus')->with('status', 1)->with("message", "Se guardo exitosamente");
       }else{
         return back()->with('status', 0)->with("message", "Ha ocurrido un error al guardar");
       }
@@ -51,7 +51,7 @@ class NavsController extends Controller
       if ($nav) {
         return view('admin.navs.show', ['nav' => $nav]);
       }else{
-        return redirect('/admin/dashboard/menus');
+        return redirect('/admin/menus');
 
       }
     }
@@ -62,7 +62,7 @@ class NavsController extends Controller
       if ($nav) {
         return view('admin.navs.edit', ['nav' => $nav]);
       }else{
-        return redirect('/admin/dashboard/menus');
+        return redirect('/admin/menus');
       }
     }
 

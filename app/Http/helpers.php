@@ -7,7 +7,7 @@
  */
 function setActiveAdmin($path)
 {
-    return Request::is( 'admin/dashboard/' . $path . '*') ? ' active' :  '';
+    return Request::is( 'admin/' . $path . '*') ? ' active' :  '';
 }
 
 function setActiveEcommerce($path)

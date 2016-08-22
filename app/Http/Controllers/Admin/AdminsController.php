@@ -41,7 +41,7 @@ public function store(Request $request)
                 'password' => bcrypt($request['password']),
             ]);
       if ($save) {
-        return redirect('admin/dashboard/admins')->with('status', 1)->with("message", "Se ha guardar con exito");
+        return redirect('admin/admins')->with('status', 1)->with("message", "Se ha guardar con exito");
       }
 }
 

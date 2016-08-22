@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-offset-0 col-md-4">
-          <img class="logo" src="{{ url('images/setting/' . $setting->logo) }}" alt="">
+          <img class="logo" style="{{ $setting->logo ? null : 'width:40%' }}" src="{{ $setting->logo ? url('images/setting/' . $setting->logo) : url('assets/img/tulogo.png') }}" alt="">
         </div>
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-offset-2 col-md-6">
           <nav class="menu_principal">
@@ -27,27 +27,39 @@
 
           <div class="row hidden-xs hidden-sm">
             <div class="col-md-12">
-              <p class="bienvenido">¡Bienvenido! Puedes 
-                <a href="/login">
-                  iniciar sesión
-                </a>
-                 o 
-                 <a href="/register">
-                  crear una cuenta
-                 </a>
-                  | 
-                 <a href="#">
-                  Servicio al Cliente: 26900000
-                 </a>
-               </p>
+              @if(!Auth::guard()->check())
+                <p class="bienvenido">¡Bienvenido! Puedes 
+                  <a href="/login">
+                    iniciar sesión
+                  </a>
+                   o 
+                   <a href="/register">
+                    crear una cuenta
+                   </a>
+                    | 
+                   <a href="#">
+                    Servicio al Cliente: {{ $setting ? $setting->phone : null }}
+                   </a>
+                 </p>
+                 @else
+                  <p class="bienvenido">¡Bienvenido! {{ Auth::guard()->name }} Puedes 
+                    <a href="/logout">
+                      salir
+                    </a>
+                     o 
+                     <a href="#">
+                      Servicio al Cliente: {{ $setting ? $setting->phone : null }}
+                     </a>
+                   </p>
+               @endif
             </div>
           </div>
 
-          <div class="row hidden-xs hidden-sm ">
-            <div class="col-md-6">
+          <div class="row hidden-xs hidden-sm" style="margin-top:20px;">
+            <div class="col-md-5 col-md-offset-2">
               <input class="search" type="search" placeholder="Buscar">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
               <p class="cart">
                 <i class="glyphicon glyphicon-shopping-cart"></i>
                 <span>

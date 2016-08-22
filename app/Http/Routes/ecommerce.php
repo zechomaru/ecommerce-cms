@@ -4,19 +4,12 @@ use App\Models\Product;
 use Illuminate\Http\Request;
   //home
   Route::get('/', 'Ecommerce\EcommerceController@index');
-
-  //users
-// Route::auth();
-
   //categorias
-  Route::get('/categoria/{category}', 'Ecommerce\EcommerceController@category');
+  Route::get('/{category}', 'Ecommerce\EcommerceController@category');
+  Route::get('/{category}/{group}', 'Ecommerce\EcommerceController@group');
+  Route::get('/{category}/{group}/{subgroup}', 'Ecommerce\EcommerceController@subgroup');
 
-  Route::get('/producto/{id}', function($id)
-  {
-    $product = Product::find($id);
-    return view('ecommerce.product', ['product' =>$product]);
-    
-  });
+  Route::get('show/producto/{category}/{id}', 'Ecommerce\EcommerceController@showdestacado');
 
 Route::post('/newsletter', function(Request $request)
 {

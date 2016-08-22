@@ -75,6 +75,30 @@
                   </select>
                 </div>
 
+                <div class="form-group {{ $errors->has('grupo') ? ' has-error' : '' }}">
+                  <label for="">Grupos</label>
+                  <?php 
+                    $grupos = App\Models\Group::get();
+                   ?>
+                  <select name="group_id" id="">
+                    @foreach($grupos as $grupo)
+                      <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="form-group {{ $errors->has('subgrupo') ? ' has-error' : '' }}">
+                  <label for="">Grupos</label>
+                  <?php 
+                    $subgrupos = App\Models\SubGroup::get();
+                   ?>
+                  <select name="sub_group_id" id="">
+                    @foreach($subgrupos as $grupo)
+                      <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+
                 <div class="form-group {{ $errors->has('brand') ? ' has-error' : '' }}">
                   <label for="">Marca</label>
                   <?php 
