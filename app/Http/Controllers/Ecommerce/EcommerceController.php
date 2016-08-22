@@ -27,8 +27,8 @@ class EcommerceController extends Controller
     public function category($category)
     {
       $category = Category::where('name', '=' , $category)->firstOrFail();
-      $products = Product::where('category_id', $category->id)->paginate(16);
-      return view('ecommerce.category', ['products' => $products, 'category' => $category]);
+      $products = Product::where('category_id', '=', $category->id)->paginate(16);
+      return view('ecommerce.category', ['products' => $products, 'categories' => $category]);
     }
 
     public function group($category,$group)
@@ -36,7 +36,7 @@ class EcommerceController extends Controller
       $category = Category::where('name', '=' , $category)->firstOrFail();
       $group = Group::where('category_id', '=' , $category->id)->where('name', '=' , $group)->firstOrFail();
       $products = Product::where('category_id', '=' , $category->id)->where('group_id', $group->id)->paginate(16);
-      return view('ecommerce.group', ['products' => $products, 'group' => $group]);
+      return view('ecommerce.group', ['products' => $products, 'groups' => $group]);
     }
 
     public function subgroup($category,$group, $subgroup)
@@ -45,7 +45,7 @@ class EcommerceController extends Controller
       $groupResult = Group::where('name', '=' , $group)->firstOrFail();
       $subgroupResult = SubGroup::where('category_id', '=' , $categoryResult->id)->where('group_id', '=' , $groupResult->id)->firstOrFail();
       $products = Product::where('category_id', '=' , $categoryResult->id)->where('group_id', $groupResult->id)->where('subgroup_id', $subgroupResult->id)->paginate(16);
-      return view('ecommerce.subgroup', ['products' => $products, 'subgroup' => $subgroupResult]);
+      return view('ecommerce.subgroup', ['products' => $products, 'subgroups' => $subgroupResult]);
     }
 
     public function showdestacado($category, $id)

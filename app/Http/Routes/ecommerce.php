@@ -5,9 +5,9 @@ use Illuminate\Http\Request;
   //home
   Route::get('/', 'Ecommerce\EcommerceController@index');
   //categorias
-  Route::get('/{category}', 'Ecommerce\EcommerceController@category');
-  Route::get('/{category}/{group}', 'Ecommerce\EcommerceController@group');
-  Route::get('/{category}/{group}/{subgroup}', 'Ecommerce\EcommerceController@subgroup');
+  Route::get('/categoria/{category}', 'Ecommerce\EcommerceController@category');
+  Route::get('/categoria/{category}/grupo/{group}', 'Ecommerce\EcommerceController@group');
+  Route::get('/categoria/{category}/grupo/{group}/subgrupo/{subgroup}', 'Ecommerce\EcommerceController@subgroup');
 
   Route::get('show/producto/{category}/{id}', 'Ecommerce\EcommerceController@showdestacado');
 

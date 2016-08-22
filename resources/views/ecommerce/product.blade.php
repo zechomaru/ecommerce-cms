@@ -23,10 +23,12 @@
                         <li>
                           <p class="toggle-menu">{{$group->name}}</p>
                           <ul>
+                            @foreach(App\Models\SubGroup::where('category_id' ,'=' , $category->id)->where('group_id' , '=', $group->id)->get() as $subgroup)
                             <li>
-                              <a href="http://www.gobantes.cl/iluminacion/lamparas-fluorescente"> Fluorescentes</a>                  
+                              <a href="">{{$subgroup->name}}</a>                  
                               
                             </li>
+                            @endforeach
                           </ul>
                         </li>
                         @endforeach

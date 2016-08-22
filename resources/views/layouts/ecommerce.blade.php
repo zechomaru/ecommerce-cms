@@ -10,7 +10,7 @@
     @yield('title')
     @include('partials.ecommerce.head')
     <style>
-        @if( Request::is( '/login' ) )
+        @if( Request::is( 'login' ) )
             .content {
               background-color: #fff;
               background-image: none; }
@@ -24,8 +24,11 @@
     @include('partials.ecommerce.header')
     @include('partials.ecommerce.nav')
     <div class="container content">
-    @include('partials.ecommerce.carousel')
-    @include('partials.ecommerce.banners')
+    @if( Request::is( 'login') || Request::is( 'register' ))
+    @else
+        @include('partials.ecommerce.carousel')
+        @include('partials.ecommerce.banners')
+    @endif
     @yield('content')
     @include('partials.ecommerce.footer')
     </div>
