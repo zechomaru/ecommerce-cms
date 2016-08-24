@@ -1,90 +1,56 @@
-        <!-- footer -->
+<div id="footer">
+    <div class="column">
+        <h3>
+            <img class="logo" style="width:200px; height:57px;" style="{{ $setting->logo ? null : 'width:40%' }}" src="{{ $setting->logo ? url('images/setting/' . $setting->logo) : url('assets/img/tulogo.png') }}" alt="">
+        </h3>
 
-          <footer class="footer">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-xs-12  col-sm-4 col-md-3 col-lg3">
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <!--logo -->
-                          <img class="logo" style="{{ $setting->logo ? null : 'width:40%' }}" src="{{ $setting->logo ? url('images/setting/' . $setting->logo) : url('assets/img/tulogo.png') }}" alt="">
-                        </div>
-                        <div class="col-xs-12 border_top">
-                          <p><i class="glyphicon glyphicon-user"></i>{{ $setting->direction ? $setting->direction : null }}</p>
-                        </div>
-                        <div class="col-xs-12 border_top">
-                          <p><i class="glyphicon glyphicon-phone"></i> Telefono: {{ $setting->phone ? $setting->phone : null }}</p>
-                        </div>
-                        <div class="col-xs-12 border_top">
-                          <p><i class="glyphicon glyphicon-phone"></i> Fax: {{ $setting->fax ? $setting->fax : null }}</p>
-                        </div>
-                      </div>
-                    </div>
+        <p class="section address">{{ $setting->direction ? $setting->direction : null }}</p>
+        <p class="section phone">Telefono: {{ $setting->phone ? $setting->phone : null }}</p>
+        <p class="section fax">Fax: {{ $setting->fax ? $setting->fax : null }}</p>
 
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg3 hidden-xs hidden-sm">
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <h3>INFORMACIÓN</h3>
-                        </div>
-                        <div class="col-xs-12">
-                          <ul>
-                            <li><a href="#">Términos y Condiciones</a></li>
-                            <li><a href="#">Quíenes Somos</a></li>
-                            <li><a href="#">Información de Despacho</a></li>
-                            <li><a href="#">Formas de Pago</a></li>
-                            <li><a href="#">Servicio al Cliente</a></li>
-                            <li><a href="#">Catálogos</a></li>
-                            <li><a href="#">Contáctanos</a></li>
-                            <li><a href="#">Boleta Eletrónicas</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+        <br>
+<!--<a href="/index.php?route=information/sucursales" class="button-default special">sucursales</a> -->
+    </div>
 
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg3 hidden-xs ">
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <h3>MI CUENTA</h3>
-                        </div>
-                        <div class="col-xs-12">
-                          <ul>
-                            <li><a href="#">Mi cuenta</a></li>
-                            <li><a href="#">Historial de pedidos</a></li>
-                            <li><a href="#">Lista de favoritos</a></li>
-                            <li><a href="#">Boletín de noticias</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+    <div class="column si-ver">
+        <h3>Información</h3>
+        <ul>
+            <li><a href="/terminos-y-condiciones">Términos y Condiciones</a></li>
+            <li><a href="/acerca_de">Quiénes Somos</a></li>
+            <li><a href="/informacion-de-despacho">Informacion de Despacho</a></li>
+            <li><a href="/formas-de-pago">Formas de Pago</a></li>
+            <li><a href="/soporte">Servicio al Cliente</a></li>
+            <li><a href="/catalogo ekoline">Catálogos </a></li>
 
-                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg3">
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <h3>FORMAS DE PAGO</h3>
-                        </div>
-                        <div class="col-xs-12">
-                          <img src="/assets/img/webpay.png" alt="">
-                        </div>
-                        <div class="col-xs-12">
-                          <h3>NEWSLETTER</h3>
-                        </div>
-                        <div class="col-xs-12">
-                          <p>
-                            <i class="glyphicon glyphicon-mail"></i> 
-                          Recibe nuestro newsletter:
-                          </p>
-                          <form action="/newsletter" method="POST">
-                            {{ csrf_field() }}
-                            <input type="email" placeholder="Ingresa tu e-mail">
-                            <input type="submit" value="SUSCRIBITE">
-                          </form>
-                        </div>
-                      </div>
-                    </div>
+            <li><a href="/contact">Contáctanos</a></li>            
+            <li><a href="/information/boletas">Boletas Electrónicas</a></li>            
+        </ul>
+    </div>
 
-                  </div>
-                </div>
-            
-          </footer>
+    <div class="column si-ver">
+        <h3>Mi cuenta</h3>
+        <ul>
+            <li><a href="/account">Mi cuenta</a></li>
+            <li><a href="/account/order">Historial de pedidos</a></li>
+            <li><a href="/account/wishlist">Lista de favoritos</a></li>
+            <li><a href="/account/newsletter">Boletín de noticias</a></li>
+        </ul>
+    </div>
 
-        <!-- end footer -->
+    <div class="column">
+        <h3>formas de pago</h3>
+        <br>
+        <a href="/formas-de-pago" class="">
+            <img src="/assets/img/webpay.png" width="257" border="0">  
+        </a>
+        <br><br><br>
+        <h3>Newsletter</h3>
+        <label>Recibe nuestro newsletter:</label>
+        <form action="/newsletter" method="POST">
+          {{ csrf_field() }}
+          <input type="email" class="news" placeholder="Ingresa tu e-mail">
+          <input type="submit" class="button-default special" value="SUSCRIBITE">
+        </form>
+    </div>
+
+</div>

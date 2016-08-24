@@ -82,6 +82,15 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
         Route::get('/marca/edit/{id}', 'BrandsController@edit');
         Route::put('/marca/update/{id}', 'BrandsController@update');
 
+        // crud banners
+
+        Route::get('/banners', 'BannersController@index');
+        Route::get('/banner/new', 'BannersController@create');
+        Route::post('/banner/new', 'BannersController@store');
+        Route::get('/banner/{id}', 'BannersController@show');
+        Route::get('/banner/edit/{id}', 'BannersController@edit');
+        Route::put('/banner/update/{id}', 'BannersController@update');
+
 
         // crud productos
 
@@ -91,9 +100,20 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
         Route::get('/producto/{id}', 'ProductsController@show');
         Route::get('/producto/edit/{id}', 'ProductsController@edit');
         Route::put('/producto/update/{id}', 'ProductsController@update');
+        Route::get('/producto/grouplist/{id}', 'ProductsController@grouplist');
+        Route::get('/producto/subgrouplist/{id}', 'ProductsController@subgrouplist');
 
         //newsletter
         Route::get('/newsletters', 'NewsletterController@index');
+
+        // crud marcas
+
+        Route::get('/sliders', 'SlidersController@index');
+        Route::get('/slider/new', 'SlidersController@create');
+        Route::post('/slider/new', 'SlidersController@store');
+        Route::get('/slider/{id}', 'SlidersController@show');
+        Route::get('/slider/edit/{id}', 'SlidersController@edit');
+        Route::put('/slider/update/{id}', 'SlidersController@update');
 
 
 

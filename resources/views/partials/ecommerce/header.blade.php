@@ -1,85 +1,54 @@
-<!-- header -->
-  <header class="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-offset-0 col-md-4">
-          <img class="logo" style="{{ $setting->logo ? null : 'width:40%' }}" src="{{ $setting->logo ? url('images/setting/' . $setting->logo) : url('assets/img/tulogo.png') }}" alt="">
+<div id="header_container">
+    <div id="header">
+        <div id="logo">
+            <a href="/">
+                @if($setting->logo)
+                    <img border="0" src="{{ url('images/setting/' . $setting->logo) }}" alt="">
+                @endif
+            </a>
         </div>
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-offset-2 col-md-6">
-          <nav class="menu_principal">
-            <ul>
-              <li><a href="/"><i class="glyphicon glyphicon-home"></i></a></li>
-              @if(Auth::guard()->check())
-                <li><a href="">Mi Cuenta</a></li>
-                <li><a href="">Mis Pedidos</a></li>
-                  <!-- <li><a href="{{ Request::segment(1) }}/logout">Logout</a></li> -->
-              @else
-                  <li><a href="/login">Entrar</a></li>
-                  <li><a href="/register">Registrate</a></li>
-              @endif
-                <li><a href="">Cómo Comprar</a></li>
-                <li><a href="">Sucursales</a></li>
-              @if(Auth::guard()->check())
-                <li><a href="/logout">Salir</a></li>
-              @endif
-            </ul>
-          </nav>
-
-          <div class="row hidden-xs hidden-sm">
-            <div class="col-md-12">
-              @if(!Auth::guard()->check())
-                <p class="bienvenido">¡Bienvenido! Puedes 
-                  <a href="/login">
-                    iniciar sesión
-                  </a>
-                   o 
-                   <a href="/register">
-                    crear una cuenta
-                   </a>
-                    | 
-                   <a href="#">
-                    Servicio al Cliente: {{ $setting ? $setting->phone : null }}
-                   </a>
-                 </p>
-                 @else
-                  <p class="bienvenido">¡Bienvenido! {{ Auth::guard()->name }} Puedes 
-                    <a href="/logout">
-                      salir
-                    </a>
-                     o 
-                     <a href="#">
-                      Servicio al Cliente: {{ $setting ? $setting->phone : null }}
-                     </a>
-                   </p>
-               @endif
-            </div>
-          </div>
-
-          <div class="row hidden-xs hidden-sm" style="margin-top:20px;">
-            <div class="col-md-5 col-md-offset-2">
-              <input class="search" type="search" placeholder="Buscar">
-            </div>
-            <div class="col-md-5">
-              <p class="cart">
-                <i class="glyphicon glyphicon-shopping-cart"></i>
-                <span>
-                  0 Item(s) - $0
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xs-12 header_end hidden-md  hidden-lg">
-          <a href="#">
-            <i class="glyphicon glyphicon-search"></i>
-          </a>
-          <a href="#">
-            <i class="glyphicon glyphicon-shopping-cart"></i>
-          </a>
-        </div>
-
-      </div>
+    <div id="account-menu">
+        <ul>
+            <li><a href="/" class="home-icon"></a></li>
+            <li><a href="/account">Mi Cuenta</a></li>
+            <li><a href="/account/order">Mis Pedidos</a></li>
+            <li><a href="/como-comprar">Cómo Comprar</a></li>                    
+            <li><a href="/index.php?route=information/sucursales">Sucursales</a></li>
+            <!--<li><a href="/soporte">Servicio al Cliente: 2-690-0075</a></li>-->
+            <div class="clear-fix"></div>
+        </ul>
+    <div class="clearfix2"></div>
+    <p>¡Bienvenido! Puedes <a href="/login">iniciar sesión</a> o <a href="/register">crear una cuenta</a> | <a href="/soporte">Servicio al Cliente: 26900000</a></p>       
+        <center class="responsive-content">
+            <a id="toggle-search">
+              <i class="fa fa-search"></i>
+            </a>
+            <a href="/index.php?route=checkout/cart" id="toggle-cart">
+              <i class="fa fa-shopping-cart"></i>
+            </a>
+            <a href="/index.php?route=account/account" id="toggle-user">
+              <i class="fa fa-user"></i>
+            </a>
+            <div class="clearfix2"></div>
+        </center>
     </div>
-  </header>
-<!-- end header -->
+            
+    <div id="dollar">
+      <span class="dolar" style="display: inline;">Dolar&nbsp;$660,94</span><span class="euro" style="display: none;">Euro&nbsp;$747,84</span><span class="uf" style="display: none;">Uf&nbsp;$26.193,90</span><span class="utm" style="display: none;">Utm&nbsp;$45.907</span>                               
+    </div>
+
+    <div id="search">
+        <input type="text" name="search" placeholder="Buscar" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">                
+    </div>
+            
+            
+    <div id="cart">
+        <a href="/index.php?route=checkout/cart" id="cart-total">0 item(s) - $0</a>
+    </div>            
+
+<!--            <div id="search">
+              <div class="button-search"></div>
+              <input type="text" name="search" placeholder="Buscar" value="" />
+            </div>-->
+        </div>
+    </div>

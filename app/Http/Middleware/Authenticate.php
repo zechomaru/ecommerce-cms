@@ -35,7 +35,7 @@ class Authenticate
                         break;
 
                     default:
-                        $path = 'user/login';
+                        $path = '/login';
                         break;
                 }
 

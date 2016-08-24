@@ -47,6 +47,28 @@
                   <input type="text" name="description" class="form-control" id="" placeholder="Nombre" value="{{ old('description') }}">
                 </div>
 
+                <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
+                  <label for="">Categoria</label>
+                  <?php 
+                    $categories = App\Models\Category::get();
+                   ?>
+                  <select name="category_id" id="category_id">
+                    <option value=''>Selecione una categoria</option>
+                    @foreach($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                 
+
+                <div class="form-group {{ $errors->has('grupo') ? ' has-error' : '' }}">
+                  <label for="">Grupos</label>
+                  <select name="group_id" id="select_groups" class="select_groups">
+                    <option value=''>Selecione un grupo</option>
+                  </select>
+                </div>
+
+
               </div>
               <!-- /.box-body -->
 

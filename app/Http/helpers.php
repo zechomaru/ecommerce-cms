@@ -10,7 +10,7 @@ function setActiveAdmin($path)
     return Request::is( 'admin/' . $path . '*') ? ' active' :  '';
 }
 
-function setActiveEcommerce($path)
+function setActiveEcommerceCategory($path)
 {
     return Request::is( '/' . $path . '*') ? ' active' :  '';
 }

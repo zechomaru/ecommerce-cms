@@ -161,6 +161,7 @@ return [
 
 
         // laravel colleetive html
+        Intervention\Image\ImageServiceProvider::class,
        Collective\Html\HtmlServiceProvider::class,
        // payments
        'Ignited\LaravelOmnipay\LaravelOmnipayServiceProvider',
@@ -213,6 +214,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
       'Html' => Collective\Html\HtmlFacade::class,
       'Omnipay'   => 'Ignited\LaravelOmnipay\Facades\OmnipayFacade',
+       'Image'     => Intervention\Image\Facades\Image::class,
 
     ],
 

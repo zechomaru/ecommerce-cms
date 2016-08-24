@@ -62,7 +62,7 @@
                       @if(!$product->images->isEmpty())
                         @foreach($product->images as $image)
                           <a href="" title="" class="colorbox cboxElement">
-                            <img src="{{ url('storage/app/system/products/' . $product->id . '/'. $image->url) }}" title="{{$product->name}}" id="image">
+                            <img style="width:228px; height: 228px; " src="{{ url('storage/app/system/products/' . $product->id . '/'. $image->url) }}" title="{{$product->name}}" id="image">
                           </a>
                           @break
                         @endforeach
@@ -74,12 +74,12 @@
                   <div class="right">
                     <div class="description">
                       <span>Marca:</span>
-                      <a href="http://www.gobantes.cl/ekoline">Ekoline</a>
+                      <a href="">{{$product->brand->name}}</a>
                       <br>
-                      <span>SKU:</span> 0609363<br>
+                      <span>SKU:</span> {{$product->sku}}<br>
                       <span>Disponibilidad:</span> Solo disponible en sucursal
                     </div>
-                      <div class="price">Precio: $5.894<br>
+                      <div class="price">Precio: ${{$product->price}}<br>
                       </div>
                       <div class="cart">
                         <p><strong>Consulte por este producto en sucursal</strong></p>  
@@ -90,12 +90,13 @@
               <a href="#tab-description" class="selected" style="display: inline;">Descripción</a>
             </div>
             <div id="tab-description" class="tab-content" style="display: block;">
-            <ul style="font-size: 13px; line-height: 20.7999992370605px;">
+              {!! $product->description !!}
+           <!--  <ul style="font-size: 13px; line-height: 20.7999992370605px;">
               <li>Especificación: Ampolleta G9 Led&nbsp;</li>
               <li>Detalle: Con difusor de calor aluminio</li>
               <li>Potencia: 3W&nbsp;</li>
               <li><span style="line-height: 20.7999992370605px;">Temperatura de Color</span>: Luz Cálida &nbsp;</li>
-          </ul>
+          </ul> -->
           </div>
 
 

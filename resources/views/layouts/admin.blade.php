@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @yield('title')
     @include('partials.admin.head')
+    @yield('title')
     <style>
         .switch input[type="checkbox"],
         .switch input[type="radio"] {
@@ -132,5 +132,45 @@
         $("#success-alert").alert('close');
       })
     </script>
+    <script>
+        jQuery(document).ready(function($){
+
+            $('#category_id').change(function(){
+                    $.get("/admin/producto/grouplist/" + $(this).val(), 
+                    function(data) {
+
+                        var item = $('#select_groups');
+                        var item2 = $('#select_subgroups');
+                        item.empty();
+                        item2.empty();
+                        item2.append("<option value=''>Selecione un sub-grupo</option>");
+                        var groups = data;
+                        for (var i = 0; i < groups.length; i++) {
+                          if (i === 0) {
+                            item.append("<option value=''>Selecione un grupo</option>");
+                          }
+                            item.append("<option value='"+ data[i].id +"'>" + data[i].name + "</option>");
+                        }
+
+                    });
+            });
+
+            $('#select_groups').change(function(){
+                    $.get("/admin/producto/subgrouplist/" + $(this).val(), 
+                    function(data) {
+
+                        var item = $('#select_subgroups');
+                        item.empty();
+                        var subgroups = data;
+                        for (var i = 0; i < subgroups.length; i++) {
+                            item.append("<option value='"+ data[i].id +"'>" + data[i].name + "</option>");
+                        }
+                    });
+            });
+
+        });
+
+    </script>
+    @yield('footer')
 </body>
 </html>

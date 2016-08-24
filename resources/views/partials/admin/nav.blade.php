@@ -48,7 +48,7 @@
         </ul>
       </li>
 
-      <li class="treeview {{ setActiveAdmin('productos') }} {{ setActiveAdmin('categorias') }} {{ setActiveAdmin('marcas') }} {{ setActiveAdmin('categoria/new') }}">
+      <li class="treeview {{ setActiveAdmin('producto/new') }} {{ setActiveAdmin('productos') }} {{ setActiveAdmin('categorias') }} {{ setActiveAdmin('marcas') }} {{ setActiveAdmin('categoria/new') }} {{ setActiveAdmin('grupos') }} {{ setActiveAdmin('grupo/new') }} {{ setActiveAdmin('sub-grupos') }} {{ setActiveAdmin('sub-grupo/new') }}">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Productos</span>
           <span class="pull-right-container">
@@ -56,8 +56,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class=""><a href="{{action('Admin\ProductsController@create')}}">Nuevo</a></li>
-          <li class=""><a href="{{action('Admin\ProductsController@index')}}">Todos</a></li>
+          <li class="{{ setActiveAdmin('producto/new') }}"><a href="{{action('Admin\ProductsController@create')}}">Nuevo</a></li>
+          <li class="{{ setActiveAdmin('productos') }}"><a href="{{action('Admin\ProductsController@index')}}">Todos</a></li>
 
           <li class="treeview {{ setActiveAdmin('categorias') }} {{ setActiveAdmin('categoria/new') }}">
             <a href="#">
@@ -68,7 +68,7 @@
             </a>
             <ul class="treeview-menu">
               <li class="{{ setActiveAdmin('categoria/new') }}"><a href="{{action('Admin\CategoriesController@create')}}">Nuevo</a></li>
-              <li class=""><a href="{{action('Admin\CategoriesController@index')}}">Todos</a></li>
+              <li class="{{ setActiveAdmin('categorias') }}"><a href="{{action('Admin\CategoriesController@index')}}">Todos</a></li>
             </ul>
           </li>
 
@@ -163,6 +163,32 @@
         <ul class="treeview-menu">
           <li class=""><a href="{{ url('admin/menus/new') }}">Nuevo</a></li>
           <li class=""><a href="{{ url('admin/menus') }}">Todos</a></li>
+        </ul>
+      </li>
+
+      <li class="treeview {{ setActiveAdmin('sliders') }}">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Sliders</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ setActiveAdmin('slider/new') }}"><a href="{{ url('admin/slider/new') }}">Nuevo</a></li>
+          <li class="{{ setActiveAdmin('sliders') }}"><a href="{{ url('admin/sliders') }}">Todos</a></li>
+        </ul>
+      </li>
+
+      <li class="treeview {{ setActiveAdmin('banners') }}">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Banners</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li class="{{ setActiveAdmin('banner/new') }}"><a href="{{ url('admin/banner/new') }}">Nuevo</a></li>
+          <li class="{{ setActiveAdmin('banners') }}"><a href="{{ url('admin/banners') }}">Todos</a></li>
         </ul>
       </li>
 

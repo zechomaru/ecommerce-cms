@@ -23,7 +23,7 @@ class Product extends Model
         return $this->belongsToMany('App\Models\Image');
     }
 
-    protected $fillable = ['name', 'sku', 'description', 'price', 'category_id', 'brand_id'];
+    protected $fillable = ['name', 'sku', 'description', 'price', 'category_id', 'brand_id', 'subgroup_id', 'group_id', 'important'];
 // protected $attributes = [
 //     'name' => 'default value'
 //   ];

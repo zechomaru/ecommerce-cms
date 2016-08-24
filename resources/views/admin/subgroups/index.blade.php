@@ -35,14 +35,18 @@
                         <tr>
                           <th>Nombre</th>
                           <th>Desscripción</th>
+                          <th>Categoria</th>
+                          <th>Grupo</th>
                           <th colspan="3">Acciones</th>
                         </tr>
                           @foreach($subgroups as $subgroup)
                             <tr>
                               <td>{{ $subgroup->name }}</td>
                               <td>{{ $subgroup->description }}</td>
-                              <td><a href="{{action('Admin\CategoriesController@show', $subgroup->id)}}"><span class="fa fa-eye"></span></a></td>
-                              <td><a href="{{action('Admin\CategoriesController@edit', $subgroup->id)}}"><span class="fa fa-edit"></span></a></td>
+                              <td>{{ $subgroup->category->name }}</td>
+                              <td>{{ $subgroup->group->name }}</td>
+                              <td><a href="{{action('Admin\SubGroupsController@show', $subgroup->id)}}"><span class="fa fa-eye"></span></a></td>
+                              <td><a href="{{action('Admin\SubGroupsController@edit', $subgroup->id)}}"><span class="fa fa-edit"></span></a></td>
                               <td><a href=""><span class="fa fa-remove"></span></a></td>
 
                           </tr>

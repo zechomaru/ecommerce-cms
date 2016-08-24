@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    <title>Editar {{ $brand->name }}</title>
+    <title>Marca {{ $brand->name }}</title>
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('admin/dashboard/marca/update/' . $brand->id) }}" method="POST" enctype="multipart/form-data">
+            <form role="form" action="{{ url('admin/marca/update/' . $brand->id) }}" method="POST" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="box-body">
                 @foreach ($errors->all() as $error)

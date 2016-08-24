@@ -27,7 +27,7 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Nueva Categoria</h3>
+              <h3 class="box-title">Nueva Grupo</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -38,13 +38,26 @@
                       <li>{{ $error }}</li>
                   @endforeach
                 <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
-                  <label for="">Nombre de la categoria</label>
+                  <label for="">Nombre del grupo</label>
                   <input type="text" name="name" class="form-control" id="" placeholder="Nombre" value="{{ old('name') }}">
                 </div>
 
                 <div class="form-group">
                   <label for="">Descripción</label>
                   <input type="text" name="description" class="form-control" id="" placeholder="Nombre" value="{{ old('description') }}">
+                </div>
+
+                <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
+                  <label for="">Categoria</label>
+                  <?php 
+                    $categories = App\Models\Category::get();
+                   ?>
+                  <select name="category_id" id="">
+                    <option value=''>Selecione una categoria</option>
+                    @foreach($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                  </select>
                 </div>
 
               </div>

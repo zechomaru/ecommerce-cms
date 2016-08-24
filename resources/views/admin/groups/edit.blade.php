@@ -31,7 +31,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('admin/dashboard/grupo/update/' . $group->id) }}" method="POST" >
+            <form role="form" action="{{ url('admin/grupo/update/' . $group->id) }}" method="POST" >
               {{ csrf_field() }}
               <div class="box-body">
                 @foreach ($errors->all() as $error)
@@ -39,12 +39,29 @@
                   @endforeach
                 <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                   <label for="">Nombre</label>
-                  <input type="text" name="name" class="form-control" id="" placeholder="Nombre" value="{{ $grupo->name }}">
+                  <input type="text" name="name" class="form-control" id="" placeholder="Nombre" value="{{ $group->name }}">
                 </div>
 
                 <div class="form-group">
                   <label for="">Descripción</label>
-                  <input type="text" name="description" class="form-control" id="" placeholder="Nombre" value="{{ $grupo->description }}">
+                  <input type="text" name="description" class="form-control" id="" placeholder="Nombre" value="{{ $group->description }}">
+                </div>
+
+                <div class="form-group">
+                  <label for="">Categoria</label>
+                  <?php 
+                    $categories = App\Models\Category::get();
+                   ?>
+                  <select name="category_id" id="">
+                    @foreach($categories as $category)
+                      @if( $group->category_id == $category->id)
+                        <option value="{{ $category->id }}" selected="true">{{ $category->name }}</option>
+                        @continue
+                      @else
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      @endif
+                    @endforeach
+                  </select>
                 </div>
 
 

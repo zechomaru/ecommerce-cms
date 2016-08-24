@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/account';
 
     /**
      * Create a new authentication controller instance.
@@ -51,7 +51,11 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'last_name' => 'required|max:255',
+            'rut' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
+            'phone' => 'required|regex:/^\d*(\.\d{2})?$/',
+            'direction' => 'required|max:255',
+            'country_id' => 'required|max:255',
             'password' => 'required|min:6|confirmed',
             'validate' => 'required',
         ]);
@@ -67,7 +71,19 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'rut' => $data['rut'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
+            'company' => $data['company'],
+            'rut_invoce' => $data['rut_invoce'],
+            'direction' => $data['direction'],
+            'direction_ext' => $data['direction_ext'],
+            'country_id' => $data['country_id'],
+            'state' => $data['state'],
+            'city' => $data['city'],
+            'commune' => $data['commune'],
+            'zip_code' => $data['zip_code'],
             'password' => bcrypt($data['password']),
         ]);
     }

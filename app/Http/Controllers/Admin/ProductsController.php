@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Image;
+use App\Models\Group;
+use App\Models\SubGroup;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Storage;
@@ -27,11 +29,7 @@ class ProductsController extends Controller
       $this->validate($request, [
           'name' => 'required',
           'price' => 'required|between:0,99.99|regex:/^\d*(\.\d{2})?$/',
-          'sku' => 'required|regex:/^\d*(\.\d{2})?$/',
-          'category_id' => 'required',
-          'brand_id' => 'required',
-          'group_id' => 'required',
-          'sub_group_id' => 'required',
+          'sku' => 'required|regex:/^\d*(\.\d{2})?$/'
       ]);
 
       $images = $request->file('images');
@@ -86,10 +84,6 @@ class ProductsController extends Controller
           'name' => 'required',
           'price' => 'required|between:0,99.99|regex:/^\d*(\.\d{2})?$/',
           'sku' => 'required|regex:/^\d*(\.\d{2})?$/',
-          'category_id' => 'required',
-          'brand_id' => 'required',
-           'group_id' => 'required',
-          'sub_group_id' => 'required',
       ]);
 
       $images = $request->file('images');
@@ -120,6 +114,18 @@ class ProductsController extends Controller
       }
     }
 
+
+public function grouplist($id)
+{
+
+      $groups = Group::select('id','name')->where('category_id', '=', $id)->get();
+      return Response()->json( $groups );
+}
+public function subgrouplist($id)
+{
+    $subgroups = SubGroup::select('id','name')->where('group_id', '=', $id)->get();
+    return Response()->json( $subgroups );
+}
 
 
 

@@ -31,7 +31,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('admin/dashboard/menus/update/' . $nav->id) }}" method="POST" >
+            <form role="form" action="{{ url('admin/menus/update/' . $nav->id) }}" method="POST" >
               {{ csrf_field() }}
               <div class="box-body">
 

@@ -34,7 +34,7 @@
                         <tbody>
                         <tr>
                           <th>Nombre</th>
-                          <th>Desscripción</th>
+                          <th>destacado</th>
                           <th>Precio</th>
                           <th>Categoria</th>
                           <th>Marca</th>
@@ -43,10 +43,16 @@
                           @foreach($products as $product)
                             <tr>
                               <td>{{ $product->name }}</td>
-                              <td>{{ $product->description }}</td>
-                              <td>$ {{ $product->price }}</td>
+                              <td>
+                                @if ($product->important== 1)
+                                  <span class="label label-success">Destacado</span>
+                                  @else
+
+                                @endif
+                              </td>
+                              <td>{{ $product->price }}</td>
                               <td>{{ $product->category->name }}</td>
-                              <td>{{ $product->brand->name }}</td>
+                              <td></td>
                               <td><a href="{{action('Admin\ProductsController@show', $product->id)}}"><span class="fa fa-eye"></span></a></td>
                               <td><a href="{{action('Admin\ProductsController@edit', $product->id)}}"><span class="fa fa-edit"></span></a></td>
                               <td><a href=""><span class="fa fa-remove"></span></a></td>

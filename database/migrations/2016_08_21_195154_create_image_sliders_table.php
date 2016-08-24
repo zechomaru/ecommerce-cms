@@ -14,7 +14,8 @@ class CreateImageSlidersTable extends Migration
     {
         Schema::create('image_sliders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
+            $table->text('original_name');
+            $table->text('filename');
             $table->integer('slider_id')->unsigned()->nullable();
             $table->foreign('slider_id')->references('id')->on('sliders')->onDelete('cascade');
             $table->timestamps();

@@ -28,7 +28,7 @@ class EcommerceController extends Controller
     {
       $category = Category::where('name', '=' , $category)->firstOrFail();
       $products = Product::where('category_id', '=', $category->id)->paginate(16);
-      return view('ecommerce.category', ['products' => $products, 'categories' => $category]);
+      return view('ecommerce.products', ['products' => $products, 'name' => $category]);
     }
 
     public function group($category,$group)
@@ -36,16 +36,16 @@ class EcommerceController extends Controller
       $category = Category::where('name', '=' , $category)->firstOrFail();
       $group = Group::where('category_id', '=' , $category->id)->where('name', '=' , $group)->firstOrFail();
       $products = Product::where('category_id', '=' , $category->id)->where('group_id', $group->id)->paginate(16);
-      return view('ecommerce.group', ['products' => $products, 'groups' => $group]);
+      return view('ecommerce.products', ['products' => $products, 'name' => $group]);
     }
 
     public function subgroup($category,$group, $subgroup)
     {
-      $categoryResult = Category::where('name', '=' , $category)->firstOrFail();
-      $groupResult = Group::where('name', '=' , $group)->firstOrFail();
-      $subgroupResult = SubGroup::where('category_id', '=' , $categoryResult->id)->where('group_id', '=' , $groupResult->id)->firstOrFail();
-      $products = Product::where('category_id', '=' , $categoryResult->id)->where('group_id', $groupResult->id)->where('subgroup_id', $subgroupResult->id)->paginate(16);
-      return view('ecommerce.subgroup', ['products' => $products, 'subgroups' => $subgroupResult]);
+      $category = Category::where('name', '=' , $category)->firstOrFail();
+      $group = Group::where('name', '=' , $group)->firstOrFail();
+      $subgroup = SubGroup::where('category_id', '=' , $category->id)->where('group_id', '=' , $group->id)->firstOrFail();
+      $products = Product::where('category_id', '=' , $category->id)->where('group_id', $group->id)->where('subgroup_id', $subgroup->id)->paginate(16);
+      return view('ecommerce.products', ['products' => $products, 'name' => $subgroup]);
     }
 
     public function showdestacado($category, $id)

@@ -31,7 +31,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('admin/dashboard/admin/update/' . $admin->id) }}" method="POST" >
+            <form role="form" action="{{ url('admin/admin/update/' . $admin->id) }}" method="POST" >
               {{ csrf_field() }}
               <div class="box-body">
               @foreach ($errors->all() as $error)

@@ -60,7 +60,8 @@
 
                 <div class="form-group">
                   <label for="">Descripción</label>
-                  <input type="text" name="description" class="form-control" id="" placeholder="Descripción" value="{{ old('description') }}">
+                  <textarea class="ckeditor" name="description" id="editor1" rows="10" cols="80" value="{{ old('description') }}">
+                  </textarea>
                 </div>
 
                 <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
@@ -68,34 +69,26 @@
                   <?php 
                     $categories = App\Models\Category::get();
                    ?>
-                  <select name="category_id" id="">
+                  <select name="category_id" id="category_id">
+                    <option value=''>Selecione una categoria</option>
                     @foreach($categories as $category)
                       <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                   </select>
                 </div>
+                 
 
                 <div class="form-group {{ $errors->has('grupo') ? ' has-error' : '' }}">
                   <label for="">Grupos</label>
-                  <?php 
-                    $grupos = App\Models\Group::get();
-                   ?>
-                  <select name="group_id" id="">
-                    @foreach($grupos as $grupo)
-                      <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
-                    @endforeach
+                  <select name="group_id" id="select_groups" class="select_groups">
+                    <option value=''>Selecione un grupo</option>
                   </select>
                 </div>
 
                 <div class="form-group {{ $errors->has('subgrupo') ? ' has-error' : '' }}">
-                  <label for="">Grupos</label>
-                  <?php 
-                    $subgrupos = App\Models\SubGroup::get();
-                   ?>
-                  <select name="sub_group_id" id="">
-                    @foreach($subgrupos as $grupo)
-                      <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
-                    @endforeach
+                  <label for="">Sub-Grupos</label>
+                  <select name="subgroup_id" id="select_subgroups">
+                    <option value=''>Selecione un sub-grupo</option>
                   </select>
                 </div>
 
@@ -105,11 +98,32 @@
                     $brands = App\Models\Brand::get();
                    ?>
                   <select name="brand_id" id="">
+                    <option value=''>Selecione una marca</option>
                     @foreach($brands as $brand)
                       <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                     @endforeach
                   </select>
                 </div>
+
+                <?php 
+                  $destacados = App\Models\Product::where('important', '=', 1)->count();
+                 ?>
+                <div class="form-group">
+                  <label for="">Destacado</label>
+                 @if($destacados >10)
+                    <p>Ya tiene 9 productos destacado</p>
+
+                  @else
+                    <div class="switch">
+                      <label for="checktoggle">NO
+                        {{ Form::checkbox('important', 1, null, ['id' => 'checktoggle']) }}
+                        <span class="lever"></span>
+                        Si
+                      </label>
+                    </div>
+                  @endif
+                </div>
+
 
 
               </div>
@@ -129,4 +143,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+@endsection
+@section('footer')
+  <script src="{{ asset('/vendors/ckeditor.js') }}"></script>
 @endsection

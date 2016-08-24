@@ -31,7 +31,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('admin/dashboard/producto/update/' . $product->id) }}" method="POST" enctype="multipart/form-data">
+            <form role="form" action="{{ url('admin/producto/update/' . $product->id) }}" method="POST" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="box-body">
 
@@ -58,7 +58,9 @@
 
                 <div class="form-group">
                   <label for="">Descripción</label>
-                  <input type="text" name="description" class="form-control" id="" placeholder="Descripción" value="{{ $product->description }}">
+                  <textarea class="ckeditor" name="description" id="editor1" rows="10" cols="80">
+                    {{ $product->description }}
+                  </textarea>
                 </div>
 
                 <div class="form-group">
@@ -66,7 +68,8 @@
                   <?php 
                     $categories = App\Models\Category::get();
                    ?>
-                  <select name="category_id" id="">
+                  <select name="category_id" id="category_id">
+                    <option value=''>Selecione una categoria</option>
                     @foreach($categories as $category)
                       @if( $product->category_id == $category->id)
                         <option value="{{ $category->id }}" selected="true">{{ $category->name }}</option>
@@ -77,6 +80,50 @@
                     @endforeach
                   </select>
                 </div>
+
+
+
+                <?php 
+                  $grupos = App\Models\Group::where('category_id' , '=', $product->category_id)->get();
+                 ?>
+                <div class="form-group {{ $errors->has('grupo') ? ' has-error' : '' }}">
+                  <label for="">Grupos</label>
+                  <select name="group_id" id="select_groups" class="select_groups">
+                    @if(!$grupos->isEmpty())
+                      @foreach($grupos as $grupo)
+                        @if( $grupo->id == $product->group_id)
+                          <option value="{{ $grupo->id  }}" selected="true">{{ $grupo->name }}</option>
+                          @continue
+                        @else
+                          <option value="{{ $grupo->id }}">{{ $grupo->name }}</option>
+                        @endif
+                      @endforeach
+                    @endif
+                  </select>
+                </div>
+
+                <?php 
+                  $subgrupos = App\Models\SubGroup::where('category_id' , '=', $product->category_id)->where('group_id', '=', $product->group_id)->get();
+                ?>
+                <div class="form-group {{ $errors->has('grupo') ? ' has-error' : '' }}">
+                  <label for="">Sub-Grupos</label>
+                  <select name="subgroup_id" id="select_subgroups" class="">
+                    @if(!$subgrupos->isEmpty())
+                      @foreach($subgrupos as $subgrupo)
+                        @if( $subgrupo->id == $product->subgroup_id)
+                          <option value="{{ $subgrupo->id  }}" selected="true">{{ $subgrupo->name }}</option>
+                          @continue
+                        @else
+                          <option value="{{ $subgrupo->id }}">{{ $subgrupo->name }}</option>
+                        @endif
+                      @endforeach
+                    @endif
+                  </select>
+                </div>
+
+
+
+
 
                 <div class="form-group">
                   <label for="">Marca</label>
@@ -114,4 +161,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+@endsection
+@section('footer')
+  <script src="{{ asset('/vendors/ckeditor.js') }}"></script>
 @endsection

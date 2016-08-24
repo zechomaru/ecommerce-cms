@@ -12,6 +12,16 @@ class Category extends Model
           return $this->hasMany('App\Models\Product');
       }
 
+      public function groups()
+          {
+              return $this->hasMany('App\Models\Group');
+          }
+
+          public function subgroups()
+              {
+                  return $this->hasMany('App\Models\SubGroup');
+              }
+
   public function navs()
       {
           return $this->belongsToMany('App\Models\Nav');

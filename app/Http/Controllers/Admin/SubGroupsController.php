@@ -26,10 +26,14 @@ public function store(Request $request)
 {
   $this->validate($request, [
           'name' => 'required|max:255',
+          'category_id' => 'required|max:255',
+          'group_id' => 'required|max:255',
       ]);
     $save = SubGroup::create([
                 'name' => ucfirst($request['name']),
                 'description' => $request['description'],
+                'category_id' => $request['category_id'],
+                'group_id' => $request['group_id'],
             ]);
       if ($save) {
         return redirect('admin/sub-grupos')->with('status', 1)->with("message", "Se ha guardar con exito");

@@ -26,10 +26,12 @@ public function store(Request $request)
 {
   $this->validate($request, [
           'name' => 'required|max:255',
+          'category_id' => 'required|max:255',
       ]);
     $save = Group::create([
                 'name' => ucfirst($request['name']),
                 'description' => $request['description'],
+                'category_id' => $request['category_id'],
             ]);
       if ($save) {
         return redirect('admin/grupos')->with('status', 1)->with("message", "Se ha guardar con exito");

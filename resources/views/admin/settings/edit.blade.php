@@ -31,7 +31,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{ url('admin/dashboard/configuracion/update') }}" method="POST" enctype="multipart/form-data">
+            <form role="form" action="{{ url('admin/configuracion/update') }}" method="POST" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
